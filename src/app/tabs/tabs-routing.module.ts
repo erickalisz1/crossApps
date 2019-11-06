@@ -38,15 +38,37 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'tracker',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../tracker/tracker.module').then(m => m.TrackerPageModule)
+
+          }
+        ]
+      },
+      {
+        path: 'history',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../history/history.module').then(m => m.HistoryPageModule)
+
+          }
+        ]
+      },
+      {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/tracker',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/tracker',
     pathMatch: 'full'
   }
 ];
@@ -55,4 +77,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }
